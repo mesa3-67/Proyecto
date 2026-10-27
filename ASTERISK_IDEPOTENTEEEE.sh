@@ -181,12 +181,11 @@ echo -e "$VERDE USUARIO AGREGADO: $FIN"
 echo -e "$VERDE nombre: $user1 num de telefono: $num1 contraseña: $contra1 $FIN"
 echo -e "$AZUL ===================================================== $FIN"
 echo -e "$VERDE TODO LISTO $FIN"; sleep 4
-exit
 
 elif [[ "$manualito" == "n" ]]; then
-echo -e "$AMARILLO no quiso crear los user manualmente $FIN"
+echo -e "$AMARILLO no quiso crear más usuarios manualmente $FIN"
 break
-else echo -e "$ROJO opcion no valida intenta de nuevo $FIN"
+else echo -e "$ROJO opción no valida intenta de nuevo $FIN"
 fi
 done
 
