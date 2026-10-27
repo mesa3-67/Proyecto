@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo apt update -y
+apt update -y
