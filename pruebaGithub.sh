@@ -7,4 +7,4 @@ else
 	echo "NECESITAS SUPER USUARIO"; exit
 fi
 
-apt update && apt full-upgrade -y
+apt update# && apt full-upgrade -y
