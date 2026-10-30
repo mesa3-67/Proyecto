@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 sudo tee /usr/local/bin/rs > /dev/null << 'EOF'
 #!/bin/bash
