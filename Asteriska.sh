@@ -130,7 +130,7 @@ echo " "
 #EMPIEZAN LAS OPCIONES DEL MENU:
 while true
 do
-read -p -r "crear usuario manualmente (s/n): " manualito
+read -p "crear usuario manualmente (s/n): " manualito
 manualito=${manualito,,}
 if [[ "$manualito" == "s" ]]; then
 clear
