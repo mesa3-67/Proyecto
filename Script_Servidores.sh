@@ -1,6 +1,6 @@
 #!/bin/bash
-set -euo pipefail
 
+set -euo pipefail 
 
 V="\e[1;32m"
 R="\e[1;31m"
@@ -29,7 +29,7 @@ echo -e "$V Paquete para instalación acitvo $F"
 echo -e "$AZUL ======================================================================================== $F"
 echo -e "$V Verificando las dependencias necesarias $F"
 
-curl https://get.netdata.cloud/kickstart.sh > /tmp/netdata-kickstart.sh && sh /tmp/netdata-kickstart.sh > /dev/null 2>&1 
+curl https://get.netdata.cloud/kickstart.sh > /tmp/netdata-kickstart.sh && sh /tmp/netdata-kickstart.sh > /dev/null 2>&1 || true 
 
 
 echo -e "$AZUL ================================================================================================ $F"
@@ -150,14 +150,6 @@ echo -e "$R REINCIO DEL SISTEMA $F"
      systemctl restart netdata
      systemctl enable netdata 
      sudo netdatacli reload-health    
-     
-     if which figlet &> /dev/null; then
-     figlet " NETDATA "
-     else
-     sudo apt install figlet -y /dev/null 2>&1
-     figlet " NETDATA "
-     fi
-     
      
      
          
