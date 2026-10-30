@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -euo pipefail
 
 V="\e[1;32m"
@@ -15,25 +16,22 @@ if [ "$(whoami)" == "root" ]; then
   exit 1
   fi
 
-          sudo apt update > /dev/null 2>&1    
+          sudo apt update > /dev/null 2>&1 || true   
      
     if command -V curl &> /dev/null; then
 echo -e "$V Paquete para instalación acitvo $F"
   else
-      sudo apt install curl -y > /dev/null
+      sudo DEBIAN_FRONTEND=noninteractive apt install curl -y > /dev/null 2>&1
     fi 
 	
 
 echo -e "$V=====================================================$F"
-echo -e "  ¡Instalando $V NETDATA $F $R Esto tardara unos segundos! $F"
+echo -e  "$V NETDATA $F $R Esto tardara unos segundos! $F"
 echo -e "$V=====================================================$F"
 
-curl https://get.netdata.cloud/kickstart.sh > /tmp/netdata-kickstart.sh && sh /tmp/netdata-kickstart.sh > /dev/null 2>&1    
+curl https://get.netdata.cloud/kickstart.sh > /tmp/netdata-kickstart.sh && sh /tmp/netdata-kickstart.sh > /dev/null 2>&1 || true   
     
-
-sleep 2
-
-echo -e "$v ========================================================$F"
+echo -e "$V ========================================================$F"
 echo -e "$V CONFIGURANDO CORREO ELCTROCNICO $F"
 echo -e "$V ========================================================$F"
 sleep 1
@@ -41,15 +39,16 @@ sleep 1
         read -p "contraseña de correo electronico: " API
         
 	
-	if msmtp --v &> /dev/null; then
+	if command -v msmtp &> /dev/null; then
 echo   -e "$V PAQUETE DE MSMTP $R ACTIVO $F"
         else
 echo   -e "$V INSTALANDO PAQUETE $R MSMTP $F"
-      sudo apt install msmtp msmtp-mta ca-certificates -y
+       sudo DEBIAN_FRONTEND=noninteractive apt install msmtp msmtp-mta ca-certificates -y > /dev/null 2>&1 || true 
+  
 	fi
 	
 echo   -e "$V PREPARANDO ALARMAS DE NOTIFICACIONES $F"
-       sudo tee /etc/netdata/health_alarm_notify.conf << EOF > /dev/null 2>&1   
+       sudo tee /etc/netdata/health_alarm_notify.conf << 'EOF' > /dev/null 2>&1 || true  
 date_format=''
 
 sendmail=""
@@ -330,7 +329,7 @@ password         $API
 EOF
 
 
-      if iptables -V &> /dev/null; then
+      if command -v iptables -V &> /dev/null; then
 echo -e "$V PAQUETE DE IPTABLAS ACTIVCO $F"
       sudo iptables -A INPUT -p tcp --dport 19999 -j ACCEPT
       else
@@ -339,12 +338,12 @@ echo -e "$R Instalando iptablas $F"
       sudo iptables -A INPUT -p tcp --dport 19999 -j ACCEPT
       fi
       
-      sudo netfilter-persistent save > /dev/null 2>&1
+      sudo netfilter-persistent save > /dev/null 2>&1 || true
       sleep 2
 
-     sudo systemctl restart netdata > /dev/null 2>&1  
+     sudo systemctl restart netdata > /dev/null 2>&1 || true 
      echo -e "NETDATA ESTA:"
-     sudo systemctl is-active netdata
+     sudo systemctl is-active netdata || true
      
      
      
