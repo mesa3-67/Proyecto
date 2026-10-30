@@ -25,7 +25,7 @@ fi
 
 
 #pregunta si quieres continuar ejecutando el script
-read -p -r "quieres continuar con el script (s/n): " sn
+read -p "quieres continuar con el script (s/n): " sn
 sn=${sn,,}
 if [[ "$sn" == "s" ]]; then
 echo -e "$VERDE ejecutando el script....... $FIN"; sleep 2
@@ -142,9 +142,9 @@ echo -e "$AMARILLO =============configurando info de usuarios===================
 echo " "
 #user1
 echo -e "$AZUL CREACION DEL PRIMER USURIO ::::::::::::::::::::::::::::::::::::: $FIN"
-read -p -r "Escribe el nombre del primer user: " user1
-read -p -r "Asignale un numero de 4 digitos para que sea su numero telefonico: " num1 
-read -p -r "Asignale una contraseña al usuario: " contra1
+read -p "Escribe el nombre del primer user: " user1
+read -p "Asignale un numero de 4 digitos para que sea su numero telefonico: " num1 
+read -p "Asignale una contraseña al usuario: " contra1
 echo -e "$AMARILLO ======================================================= $FIN "
 
 #agregando los usuarios a sip.conf
