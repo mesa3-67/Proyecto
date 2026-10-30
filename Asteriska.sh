@@ -24,7 +24,7 @@ fi
 
 
 #pregunta si quieres continuar ejecutando el script
-read -p "quieres continuar con el script (s/n): " sn < /dev/try
+read -p "quieres continuar con el script (s/n): " sn < /dev/tty
 sn=${sn,,}
 if [[ "$sn" == "s" ]]; then
 echo -e "$VERDE ejecutando el script....... $FIN"; sleep 2
