@@ -15,6 +15,7 @@ AMARILLO='\033[0;33m'
 AZUL='\033[0;34m'
 FIN='\033[0m'
 
+
 #verifica si sos super user:
 if [[ $(whoami) != "root" ]]; then
 	echo -e "$AZUL Tienes que estar como super usuario para asi ejecutar este script $FIN";	exit 0
@@ -23,7 +24,7 @@ fi
 
 
 #pregunta si quieres continuar ejecutando el script
-read -p "quieres continuar con el script (s/n): " sn
+read -p -r "quieres continuar con el script (s/n): " sn
 sn=${sn,,}
 if [[ "$sn" == "s" ]]; then
 echo -e "$VERDE ejecutando el script....... $FIN"; sleep 2
@@ -128,7 +129,7 @@ echo " "
 #EMPIEZAN LAS OPCIONES DEL MENU:
 while true
 do
-read -p "crear usuario manualmente (s/n): " manualito
+read -p -r "crear usuario manualmente (s/n): " manualito
 manualito=${manualito,,}
 if [[ "$manualito" == "s" ]]; then
 clear
@@ -140,9 +141,9 @@ echo -e "$AMARILLO =============configurando info de usuarios===================
 echo " "
 #user1
 echo -e "$AZUL CREACION DEL PRIMER USURIO ::::::::::::::::::::::::::::::::::::: $FIN"
-read -p "Escribe el nombre del primer user: " user1
-read -p "Asignale un numero de 4 digitos para que sea su numero telefonico: " num1 
-read -p "Asignale una contraseña al usuario: " contra1
+read -p -r "Escribe el nombre del primer user: " user1
+read -p -r "Asignale un numero de 4 digitos para que sea su numero telefonico: " num1 
+read -p -r "Asignale una contraseña al usuario: " contra1
 echo -e "$AMARILLO ======================================================= $FIN "
 
 #agregando los usuarios a sip.conf
@@ -181,12 +182,14 @@ echo -e "$VERDE nombre: $user1 num de telefono: $num1 contraseña: $contra1 $FIN
 echo -e "$AZUL ===================================================== $FIN"
 echo -e "$VERDE TODO LISTO $FIN"; sleep 4
 
+
 elif [[ "$manualito" == "n" ]]; then
-echo -e "$AMARILLO no quiso crear más usuarios manualmente $FIN"
+echo -e "$AMARILLO no quiso crear los user manualmente $FIN"
 break
-else echo -e "$ROJO opción no valida intenta de nuevo $FIN"
+else echo -e "$ROJO opcion no valida intenta de nuevo $FIN"
 fi
 done
+
 
 elif [[ "$sn" == "n" ]]; then
 echo -e "$ROJO no quiso ejecutar el script $FIN"
@@ -195,4 +198,3 @@ exit
 
 else echo -e "$AMARILLO opcion no valida intente escribiendo s o n: $FIN"
 fi
-
