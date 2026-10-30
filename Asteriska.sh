@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 #######################################################
 #	|=====SCRIPT DE ASTERISK: v20=====|	      #
 #	- ACTUALIZA PAQUETES			      #
