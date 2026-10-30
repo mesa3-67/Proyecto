@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -euo pipefail
 
 V="\e[1;32m"
 R="\e[1;31m"
