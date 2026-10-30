@@ -14,7 +14,6 @@ VERDE='\033[0;32m'
 AMARILLO='\033[0;33m'
 AZUL='\033[0;34m'
 FIN='\033[0m'
-set -euo pipefail
 
 #verifica si sos super user:
 if [[ $(whoami) != "root" ]]; then
