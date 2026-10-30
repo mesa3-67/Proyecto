@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Verificar que se ejecute como root para modificar servicios y firewall
 if [ "$EUID" -ne 0 ]; then
